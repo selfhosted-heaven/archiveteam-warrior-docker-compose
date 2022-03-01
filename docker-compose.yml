@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+    archiveteam-watchtower:
+        container_name: archiveteam-watchtower
+        image: containrrr/watchtower
+        labels:
+            - com.centurylinklabs.watchtower.enable=true
+            - com.centurylinklabs.watchtower.scope=archiveteam-warrior
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+        command: '--label-enable --cleanup --interval 3600 --scope archiveteam-warrior'
+        restart: unless-stopped
+
+    archiveteam-warrior:
+        container_name: archiveteam-warrior
+        image: atdr.meo.ws/archiveteam/warrior-dockerfile
+        environment:
+            - DOWNLOADER=selfhostedheaven # Change this to your nickname
+            - SELECTED_PROJECT=auto # Change this to your project of preference or let the archiveteam decide with 'auto'
+            - CONCURRENT_ITEMS=6 # Change this to the amount of concurrent download threads you can handle
+        stop_signal: SIGINT
+        stop_grace_period: 5m
+        labels:
+            - com.centurylinklabs.watchtower.enable=true
+            - com.centurylinklabs.watchtower.scope=archiveteam-warrior
+        ports:
+            - '8001:8001'
+        restart: unless-stopped
