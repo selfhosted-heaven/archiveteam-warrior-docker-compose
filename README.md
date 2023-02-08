@@ -9,4 +9,4 @@ Installing the warrior is very easy: just download the `docker-compose.yml` file
 This Docker Compose file includes Watchtower, which will automatically update the warrior if a new version comes out. When closing, the warrior is given a 5 minute timeout window to finish any tasks it is currently working on. The configuration is done through environment variables, so you don't have to set up the warrior after each update. 
 
 ## Read more
-You can read everything about this file and why I made this on my blog [selfhostedheaven.com](https://selfhostedheaven.com/posts/20220228-help-out-archiving/).
+You can read everything about this file and why I made this on my blog [selfhostedheaven.com](https://selfhostedheaven.com/posts/20230208-self-host-min-io/).
